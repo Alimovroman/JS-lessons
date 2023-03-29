@@ -1,0 +1,74 @@
+<meta charset="UTF-8">
+<script src="doAfter.js"></script>
+<script src="axios.js"></script>
+<script src="api.js"></script>
+<script>
+
+
+    // doAfter(5).then( (res) => console.log('я сработал через 5 секунд' + res) );
+    // doAfter(3).then( (res) => console.log('а я сработал через 3 секунд'  + res) );
+    // doAfter(10).then( (res) => console.log('я сработал через 10 секунд'  + res) );
+
+    // let promise3 = doAfter(1);
+    // promise3.catch( () => console.log('some error') )
+    // .then( (data) => console.log('и я тоже следом сработал через 3 секунд' + data) );
+
+    // api.sendStudentsCountToItKamasutra(20)
+    //     .then(res => {
+    //         console.log(res);
+    //     })
+
+    // const prAll = Promise.all([
+    //     api.getVacanciesCountFromMicrosoft()
+    //         .then(data => {
+    //             console.log(data);
+    //             return data
+    //         }),
+    //     api.getVacanciesCountFromGoogle()
+    //         .then(data => {
+    //             console.log(data);
+    //             return data
+    //         })
+    // ])
+    //     .then(data => {
+    //         let result = data[0] + data[1]
+    //         console.log(result)
+    //         return result
+    //
+    //     })
+    //     .then((data) => {
+    //         return api.sendStudentsCountToItKamasutra(data)
+    //     })
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(error => console.error('sorry bro'))
+// let msCount
+//         api.getVacanciesCountFromMicrosoft()
+//             .then(data => {
+//                 msCount = data;
+//                 return data
+//             })
+//             .then((data) => {
+//                 console.log(data)
+//                 return api.getVacanciesCountFromGoogle()
+//             })
+//             .then((data) => {
+//                 return api.sendStudentsCountToItKamasutra(data + msCount)
+//             })
+//             .then(data => {
+//                 console.log(data);
+//             })
+
+const asycnAwaitFunc = async () => {
+    const msCount = await  api.getVacanciesCountFromMicrosoft()
+    console.log(msCount)
+    const googleCount = await api.getVacanciesCountFromGoogle()
+    console.log(googleCount)
+    const allResult = await api.sendStudentsCountToItKamasutra(msCount + googleCount)
+    console.log('yo yoyo', 'tytyty', allResult)
+}
+    asycnAwaitFunc()
+
+
+</script>
